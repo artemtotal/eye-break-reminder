@@ -101,7 +101,16 @@ class EyeBreakReminder(QWidget):
             pygame.time.Clock().tick(10)
 
     def create_tray_icon(self):
-        self.tray_icon = QSystemTrayIcon(self)
+        
+        if getattr(sys, 'frozen', False): 
+            base_path = sys._MEIPASS
+        else:
+            base_path = os.path.abspath(".")
+        
+        icon_path = os.path.join(base_path, 'assets', 'icon.png')
+        self.tray_icon = QSystemTrayIcon(QIcon(icon_path), self)
+
+        # self.tray_icon = QSystemTrayIcon(self)
         self.tray_icon.setIcon(QIcon(self.icon_path))
 
         tray_menu = QMenu()
