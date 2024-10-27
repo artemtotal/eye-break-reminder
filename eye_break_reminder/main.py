@@ -4,7 +4,7 @@ import sys
 import os
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QVBoxLayout, QSlider,
-    QSystemTrayIcon, QMenu, QAction
+    QSystemTrayIcon, QMenu, QAction, QPushButton
 )
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QIcon
@@ -39,7 +39,7 @@ class EyeBreakReminder(QWidget):
 
         self.setLayout(layout)
 
-        self.remaining_time = 20 * 60  # 20 minutes in seconds
+        self.remaining_time = 1/2 * 60  # 20 minutes in seconds
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_timer)
@@ -78,10 +78,16 @@ class EyeBreakReminder(QWidget):
         self.break_window.showFullScreen()
 
         layout = QVBoxLayout()
+
         label = QLabel("It's time to look 6 meters into the distance for 20 seconds", self.break_window)
         label.setAlignment(Qt.AlignCenter)
         label.setStyleSheet('font-size: 48px;')
         layout.addWidget(label)
+
+        close_button = QPushButton("Close", self.break_window)
+        close_button.clicked.connect(self.break_window.close)
+        layout.addWidget(close_button)
+
         self.break_window.setLayout(layout)
 
         QTimer.singleShot(20000, self.break_window.close)  # Close after 20 seconds
