@@ -25,11 +25,16 @@ class EyeBreakReminder(QWidget):
 
         self.timer_label = QLabel('20:00', self)
         self.timer_label.setAlignment(Qt.AlignCenter)
+        self.timer_label.setStyleSheet('font-size: 36px;')
         layout.addWidget(self.timer_label)
+
+        self.volume_label = QLabel('Volume: 50', self)
+        layout.addWidget(self.volume_label)
 
         self.volume_slider = QSlider(Qt.Horizontal)
         self.volume_slider.setRange(0, 100)
         self.volume_slider.setValue(50)
+        self.volume_slider.valueChanged.connect(self.update_volume_label)
         layout.addWidget(self.volume_slider)
 
         self.setLayout(layout)
@@ -50,6 +55,10 @@ class EyeBreakReminder(QWidget):
         self.create_tray_icon()
 
         self.show()
+    
+    def update_volume_label(self, value):
+        self.volume_label.setText(f'Volume: {value}')
+
 
     def update_timer(self):
         if self.remaining_time > 0:
