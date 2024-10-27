@@ -1,6 +1,6 @@
 Here’s a suggested `README.md` file for your "EyeBreakReminder" project:
 
-```markdown
+
 # EyeBreakReminder
 
 EyeBreakReminder is a desktop application that helps users take regular breaks for their eyes. This application reminds users to look away from their screens periodically, which can help reduce eye strain, especially during extended screen time.
