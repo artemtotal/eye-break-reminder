@@ -39,7 +39,7 @@ class EyeBreakReminder(QWidget):
 
         self.setLayout(layout)
 
-        self.remaining_time = 1/2 * 60  # 20 minutes in seconds
+        self.remaining_time = 20 * 60  # 20 minutes in seconds
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_timer)
