@@ -1,98 +1,74 @@
-# Eye Break Reminder
+Here’s a suggested `README.md` file for your "EyeBreakReminder" project:
 
-![Logo](./icon.png)
+```markdown
+# EyeBreakReminder
 
-## Description
-
-**Eye Break Reminder** is a convenient desktop application developed in Python using PyQt5. It helps you monitor your computer usage time and reminds you to take eye breaks every 20 minutes. During a break, the application plays a sound and displays a full-screen message encouraging you to look 6 meters into the distance for 20 seconds.
+EyeBreakReminder is a desktop application that helps users take regular breaks for their eyes. This application reminds users to look away from their screens periodically, which can help reduce eye strain, especially during extended screen time.
 
 ## Features
+- **Eye Break Timer**: Sets a countdown timer (default 20 minutes) that reminds users to take breaks.
+- **Customizable Volume**: Allows users to adjust the notification sound volume.
+- **System Tray Integration**: Minimizes to the system tray for unobtrusive reminders.
+- **Full-Screen Break Reminder**: Prompts the user to look away for 20 seconds once the timer ends, displaying a full-screen message.
 
-- **Timer**: Counts down 20 minutes of active work.
-- **Break Reminders**: After the timer ends, a break mode is activated with a message and sound alert.
-- **Volume Control**: Ability to adjust the notification volume.
-- **System Tray**: The application minimizes to the system tray with options to quickly restore or exit.
-- **Full-Screen Notification**: For maximum effectiveness of break reminders.
-
-## Screenshots
-
-![Main Window](path/to/screenshot_main.png)
-*Main application window with timer and volume control.*
-
-![Break Window](path/to/screenshot_break.png)
-*Full-screen message prompting you to take a break.*
+## Project Structure
+- `assets/`:
+  - `icon.png`: The icon used for the application in the system tray.
+  - `sound.mp3`: The sound played during break reminders.
+- `eye_break_reminder/`: Contains the main application code.
+  - `__init__.py`: Initializes the module.
+  - `main.py`: Defines the main functionality of the EyeBreakReminder class.
+- `run.py`: The main script to launch the application.
+- `setup.py`: Script for packaging and distributing the application.
+- `.gitignore`: Specifies files and directories ignored by Git.
+- `LICENSE`: The project license.
+- `README.md`: Project documentation.
+- `requirements.txt`: Lists the dependencies required for the project.
 
 ## Installation
 
-### Prerequisites
-
-- **Python 3.6+**
-- **pip** — Python package manager
-
-### Installation Steps
-
-1. **Clone the repository:**
-
+1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/EyeBreakReminder.git
+   git clone https://github.com/yourusername/EyeBreakReminder.git
    cd EyeBreakReminder
    ```
 
-2. **Create and activate a virtual environment (recommended):**
-
+2. **Set Up the Virtual Environment**:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # For Windows: venv\Scripts\activate
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 
-3. **Install the required dependencies:**
-
+3. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Add necessary resources:**
-
-   Ensure that the `sound.mp3` and `icon.png` files are present in the project directory.
+4. **Run the Application**:
+   ```bash
+   python run.py
+   ```
 
 ## Usage
 
-Run the application with the following command:
+- Launch the application by running `python run.py`.
+- The application will start a 20-minute timer. After the timer ends, it will prompt you to take a 20-second break.
+- Control the volume of the reminder sound using the slider in the application window.
+- Minimize the application to the system tray by closing the window. You can restore it by selecting "Restore" from the tray menu.
 
-```bash
-python main.py
-```
+## Requirements
 
-Upon launch, a window with a timer and volume slider will appear. The timer will start counting down from 20 minutes. When the time is up, you will receive a notification to take a break.
-
-### System Tray
-
-- **Restore Window**: Right-click the application icon in the system tray and select "Restore".
-- **Exit Application**: Choose "Exit" from the tray context menu.
-
-## Dependencies
-
-- [PyQt5](https://pypi.org/project/PyQt5/) — Library for creating graphical user interfaces.
-- [pygame](https://pypi.org/project/pygame/) — Library for handling sound.
-
-## Contribution
-
-Welcome to the project! You can contribute in the following ways:
-
-1. **Fork** the repository.
-2. Create your own branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push the branch (`git push origin feature/YourFeature`).
-5. Create a Pull Request.
+- Python 3.6 or higher
+- [PyQt5](https://pypi.org/project/PyQt5/) (>=5.15.0)
+- [pygame](https://pypi.org/project/pygame/) (>=2.0.0)
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for more details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## Author
 
-If you have any questions or suggestions, contact us via email: [your.email@example.com](mailto:your.email@example.com)
+Artem Tarasiuk – [email](mailto:artemtotal@gmail.com)
+```
 
----
-
-*Thank you for using Eye Break Reminder! Take care of your vision!*
+This `README.md` includes an overview, installation instructions, and basic usage guidelines for the EyeBreakReminder project based on the code and structure provided.
