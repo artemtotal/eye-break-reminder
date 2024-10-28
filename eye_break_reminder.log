@@ -1,0 +1,64 @@
+2024-10-28 15:17:12,685:INFO:Приложение запускается.
+2024-10-28 15:17:26,997:INFO:Настройки сохранены.
+2024-10-28 15:34:47,225:INFO:Application is starting.
+2024-10-28 15:34:47,607:INFO:Application was not in autostart.
+2024-10-28 15:34:56,463:INFO:Settings saved.
+2024-10-28 15:34:56,531:INFO:Application added to autostart.
+2024-10-28 15:35:02,161:INFO:Application minimized to tray.
+2024-10-28 15:38:41,728:INFO:Application is starting.
+2024-10-28 15:42:18,087:INFO:Application is starting.
+2024-10-28 15:42:18,489:INFO:Application added to autostart.
+2024-10-28 15:42:24,230:INFO:Application minimized to tray.
+2024-10-28 15:42:33,486:INFO:Application is starting.
+2024-10-28 15:42:33,834:INFO:Application added to autostart.
+2024-10-28 15:42:35,834:INFO:Application is closing.
+2024-10-28 15:42:39,585:INFO:Application is starting.
+2024-10-28 15:42:39,914:INFO:Application added to autostart.
+2024-10-28 16:02:31,648:INFO:User notified of upcoming break.
+2024-10-28 16:03:02,687:INFO:Break ended.
+2024-10-28 16:34:10,412:INFO:Application is starting.
+2024-10-28 16:34:11,281:INFO:Application added to autostart.
+2024-10-28 16:34:20,981:INFO:Application minimized to tray.
+2024-10-28 16:35:33,288:INFO:Application is starting.
+2024-10-28 16:35:33,786:INFO:Application added to autostart.
+2024-10-28 16:35:42,768:INFO:Application is closing.
+2024-10-28 16:42:30,874:INFO:Application is starting.
+2024-10-28 16:42:31,194:INFO:Application added to autostart.
+2024-10-28 16:42:35,468:INFO:Application is closing.
+2024-10-28 16:45:28,456:INFO:Application is starting.
+2024-10-28 16:45:28,771:INFO:Application added to autostart.
+2024-10-28 16:45:37,390:INFO:Application is closing.
+2024-10-28 16:46:15,286:INFO:Application is starting.
+2024-10-28 16:46:20,054:INFO:Application added to autostart.
+2024-10-28 16:46:28,501:INFO:Application is closing.
+2024-10-28 16:46:54,945:INFO:Application is starting.
+2024-10-28 16:46:55,317:INFO:Application added to autostart.
+2024-10-28 16:46:59,173:INFO:Application is closing.
+2024-10-28 16:49:16,471:INFO:Application is starting.
+2024-10-28 16:49:16,473:WARNING:Could not load translation for locale 'en_US' from 'D:\Devops\my_project\eye_break_reminder\eye_break_reminder\translations'
+2024-10-28 16:49:16,858:INFO:Application added to autostart.
+2024-10-28 16:49:32,836:INFO:Application is closing.
+2024-10-28 16:50:26,629:INFO:Application is starting.
+2024-10-28 16:50:36,235:INFO:Application is starting.
+2024-10-28 16:50:36,237:WARNING:Could not load translation for locale 'en_US' from 'D:\Devops\my_project\eye_break_reminder\eye_break_reminder\translations'
+2024-10-28 16:50:36,545:INFO:Application added to autostart.
+2024-10-28 16:50:38,105:INFO:Application is closing.
+2024-10-28 16:51:05,478:INFO:Application is starting.
+2024-10-28 16:51:05,481:WARNING:Could not load translation for locale 'en_US' from 'D:\Devops\my_project\eye_break_reminder\eye_break_reminder\translations'
+2024-10-28 16:51:05,481:INFO:Translations path: D:\Devops\my_project\eye_break_reminder\eye_break_reminder\translations
+2024-10-28 16:51:05,811:INFO:Application added to autostart.
+2024-10-28 16:51:11,334:INFO:Application is closing.
+2024-10-28 16:51:32,650:INFO:Application is starting.
+2024-10-28 16:51:32,653:INFO:Loaded translation for locale 'en_US'
+2024-10-28 16:51:32,653:INFO:Translations path: D:\Devops\my_project\eye_break_reminder\eye_break_reminder\translations
+2024-10-28 16:51:32,990:INFO:Application added to autostart.
+2024-10-28 16:51:37,365:INFO:Application is closing.
+2024-10-28 16:51:40,666:INFO:Application is starting.
+2024-10-28 16:51:40,667:INFO:Loaded translation for locale 'de_DE'
+2024-10-28 16:51:40,667:INFO:Translations path: D:\Devops\my_project\eye_break_reminder\eye_break_reminder\translations
+2024-10-28 16:51:41,197:INFO:Application added to autostart.
+2024-10-28 16:51:46,820:INFO:Application is closing.
+2024-10-28 16:53:53,362:INFO:Application is starting.
+2024-10-28 16:53:53,364:INFO:Loaded translation for locale 'en_US'
+2024-10-28 16:53:53,780:INFO:Application added to autostart.
+2024-10-28 16:53:59,408:INFO:Application minimized to tray.
