@@ -90,7 +90,18 @@ class EyeBreakReminder(QWidget):
 
         self.break_window.setLayout(layout)
 
-        QTimer.singleShot(20000, self.break_window.close)  # Close after 20 seconds
+        QTimer.singleShot(20000, self.end_break)  # Close after 20 seconds
+
+    
+    def end_break(self):
+        # Закрываем окно перерыва
+        if hasattr(self, 'break_window'):
+            self.break_window.close()
+
+        # Сбрасываем таймер на 20 минут
+        self.remaining_time = 20 * 60
+
+
 
     def play_sound(self, volume):
         pygame.mixer.init()
