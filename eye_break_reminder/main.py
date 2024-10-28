@@ -13,6 +13,16 @@ from PyQt5.QtGui import QIcon
 import threading
 import pygame
 
+def resource_path(relative_path):
+    # Получает абсолютный путь к ресурсам, работает для dev и для PyInstaller 
+    if getattr(sys, '_MEIPASS', False):
+            # Если запущено из PyInstaller
+        base_path = sys._MEIPASS
+    else:
+            # Если запущено в режиме разработки
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
+
 class EyeBreakReminder(QWidget):
     def __init__(self):
         super().__init__()
@@ -44,9 +54,11 @@ class EyeBreakReminder(QWidget):
         # Define base directory
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+        
         # Paths to assets
-        self.sound_path = os.path.join(BASE_DIR, '..', 'assets', 'sound.mp3')
-        self.icon_path = os.path.join(BASE_DIR, '..', 'assets', 'icon.png')
+        self.sound_path = resource_path('assets/sound.mp3')
+        self.icon_path = resource_path('assets/icon.png')
+
 
         self.initUI()
 
@@ -273,30 +285,25 @@ class EyeBreakReminder(QWidget):
         except Exception as e:
             logging.error(f"Error playing sound: {e}")
 
+
+
     def create_tray_icon(self):
-        if getattr(sys, 'frozen', False): 
-            base_path = sys._MEIPASS
-        else:
-            base_path = os.path.abspath(".")
-
-        icon_path = os.path.join(base_path, 'assets', 'icon.png')
-        self.tray_icon = QSystemTrayIcon(QIcon(icon_path), self)
-
-        self.tray_icon.setIcon(QIcon(self.icon_path))
+        self.tray_icon = QSystemTrayIcon(QIcon(self.icon_path), self)
 
         tray_menu = QMenu()
         restore_action = QAction(self.tr('Restore'), self)
         restore_action.triggered.connect(self.showNormal)
-        tray_menu.addAction(restore_action)
         restore_action.setIcon(QIcon(self.icon_path))
+        tray_menu.addAction(restore_action)
 
         quit_action = QAction(self.tr('Exit'), self)
         quit_action.triggered.connect(QApplication.instance().quit)
-        tray_menu.addAction(quit_action)
         quit_action.setIcon(QIcon(self.icon_path))
+        tray_menu.addAction(quit_action)
 
         self.tray_icon.setContextMenu(tray_menu)
         self.tray_icon.show()
+
 
     def closeEvent(self, event):
         # Always close the application when the window is closed
