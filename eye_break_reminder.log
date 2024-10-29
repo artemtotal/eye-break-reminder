@@ -76,3 +76,42 @@
 2024-10-28 17:20:52,774:INFO:Settings saved.
 2024-10-28 17:20:52,775:INFO:Application added to autostart.
 2024-10-28 17:20:53,855:INFO:Application minimized to tray.
+2024-10-28 17:34:13,072:INFO:Application is starting.
+2024-10-28 17:34:13,075:INFO:Loaded translation for locale 'en_US'
+2024-10-28 17:34:13,428:INFO:Application added to autostart.
+2024-10-28 17:34:23,058:INFO:Application is closing.
+2024-10-28 17:39:37,074:INFO:Application is starting.
+2024-10-28 17:39:37,078:INFO:Loaded translation for locale 'en_US'
+2024-10-28 17:39:37,078:INFO:Event type: 33
+2024-10-28 17:39:37,243:INFO:Event type: 100
+2024-10-28 17:39:37,326:INFO:Event type: 39
+2024-10-28 17:39:37,411:INFO:Application added to autostart.
+2024-10-28 17:39:37,411:INFO:Event type: 89
+2024-10-28 17:39:37,411:INFO:Event type: 99
+2024-10-28 17:39:39,286:INFO:Event type: 99
+2024-10-28 17:39:39,287:INFO:Event type: 105
+2024-10-28 17:39:39,294:INFO:Application minimized to tray.
+2024-10-28 17:41:01,088:INFO:Application is starting.
+2024-10-28 17:41:01,090:INFO:Loaded translation for locale 'en_US'
+2024-10-28 17:41:01,090:INFO:Event type: 33
+2024-10-28 17:41:01,299:INFO:Event type: 100
+2024-10-28 17:41:01,389:INFO:Event type: 39
+2024-10-28 17:41:01,416:INFO:Application added to autostart.
+2024-10-28 17:41:01,416:INFO:Event type: 89
+2024-10-28 17:41:01,416:INFO:Event type: 99
+2024-10-28 17:41:04,112:INFO:Event type: 99
+2024-10-28 17:41:04,112:INFO:Event type: 105
+2024-10-28 17:41:04,120:INFO:Application minimized to tray.
+2024-10-28 17:42:41,369:INFO:Application is starting.
+2024-10-28 17:42:41,372:INFO:Loaded translation for locale 'en_US'
+2024-10-28 17:42:41,372:INFO:Event type: 33
+2024-10-28 17:42:41,540:INFO:Event type: 100
+2024-10-28 17:42:41,623:INFO:Event type: 39
+2024-10-28 17:42:41,650:INFO:Application added to autostart.
+2024-10-28 17:42:41,650:INFO:Event type: 89
+2024-10-28 17:42:41,650:INFO:Event type: 99
+2024-10-28 17:42:42,402:INFO:Event type: 99
+2024-10-28 17:42:53,080:INFO:Event type: 99
+2024-10-28 17:42:53,081:INFO:Event type: 99
+2024-10-28 17:42:53,081:INFO:Event type: 105
+2024-10-28 17:42:53,090:INFO:Application minimized to tray.

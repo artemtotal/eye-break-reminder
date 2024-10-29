@@ -41,7 +41,7 @@ class EyeBreakReminder(QWidget):
         self.translator = QTranslator()
         locale = QLocale.system().name()
         print(f"System locale: {locale}")
-        translations_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'translations')
+        translations_path = resource_path('translations')
         translation_loaded = self.translator.load(f'app_{locale}', translations_path)
         if translation_loaded:
             QApplication.instance().installTranslator(self.translator)
@@ -58,6 +58,7 @@ class EyeBreakReminder(QWidget):
         # Paths to assets
         self.sound_path = resource_path('assets/sound.mp3')
         self.icon_path = resource_path('assets/icon.png')
+
 
 
         self.initUI()
@@ -312,6 +313,7 @@ class EyeBreakReminder(QWidget):
         event.accept()
 
     def changeEvent(self, event):
+        logging.info(f"Event type: {event.type()}")
         # Handle minimize to tray if the checkbox is checked
         if event.type() == QEvent.WindowStateChange:
             if self.windowState() & Qt.WindowMinimized:
@@ -334,7 +336,7 @@ class EyeBreakReminder(QWidget):
                 key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
                                      r"Software\Microsoft\Windows\CurrentVersion\Run",
                                      0, winreg.KEY_SET_VALUE)
-                winreg.SetValueEx(key, 'EyeBreakReminder', 0, winreg.REG_SZ, f'"{sys.executable}" "{sys.argv[0]}"')
+                winreg.SetValueEx(key, 'EyeBreakReminder', 0, winreg.REG_SZ, f'"{sys.executable}"')
                 key.Close()
                 logging.info("Application added to autostart.")
             except Exception as e:
