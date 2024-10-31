@@ -402,6 +402,7 @@ class EyeBreakReminder(QWidget):
 
 def main():
     app = QApplication(sys.argv)
+    app.setQuitOnLastWindowClosed(False)
     reminder = EyeBreakReminder()
     sys.exit(app.exec_())
 
