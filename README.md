@@ -1,74 +1,227 @@
-Here’s a suggested `README.md` file for your "EyeBreakReminder" project:
-
-
 # EyeBreakReminder
 
-EyeBreakReminder is a desktop application that helps users take regular breaks for their eyes. This application reminds users to look away from their screens periodically, which can help reduce eye strain, especially during extended screen time.
+EyeBreakReminder is a simple Python application designed to help you take regular breaks to rest your eyes, reminding you to look away from the screen every set interval.
+
+## Description
+
+The application displays a countdown timer and, at specified intervals, shows a notification (either fullscreen or windowed) prompting you to take a break and look into the distance. It also plays customizable sound notifications at the start and end of each break. You can adjust the work interval, break duration, volume, and choose whether the application minimizes to the system tray or starts automatically with your system. Multilingual support is included via translation files.
 
 ## Features
-- **Eye Break Timer**: Sets a countdown timer (default 20 minutes) that reminds users to take breaks.
-- **Customizable Volume**: Allows users to adjust the notification sound volume.
-- **System Tray Integration**: Minimizes to the system tray for unobtrusive reminders.
-- **Full-Screen Break Reminder**: Prompts the user to look away for 20 seconds once the timer ends, displaying a full-screen message.
 
-## Project Structure
-- `assets/`:
-  - `icon.png`: The icon used for the application in the system tray.
-  - `sound.mp3`: The sound played during break reminders.
-- `eye_break_reminder/`: Contains the main application code.
-  - `__init__.py`: Initializes the module.
-  - `main.py`: Defines the main functionality of the EyeBreakReminder class.
-- `run.py`: The main script to launch the application.
-- `setup.py`: Script for packaging and distributing the application.
-- `.gitignore`: Specifies files and directories ignored by Git.
-- `LICENSE`: The project license.
-- `README.md`: Project documentation.
-- `requirements.txt`: Lists the dependencies required for the project.
+- **Customizable work intervals and break durations**
+- **Option for fullscreen or windowed notifications**
+- **Adjustable volume for sound notifications**
+- **Minimize to system tray**
+- **Autostart with system boot**
+- **Multilingual support (using translation files)**
+- **Event logging for troubleshooting**
 
 ## Installation
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/EyeBreakReminder.git
-   cd EyeBreakReminder
-   ```
+### Requirements
 
-2. **Set Up the Virtual Environment**:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
+- Python 3.x
+- Python libraries:
+  - PyQt5
+  - pygame
 
-3. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Installing Dependencies
 
-4. **Run the Application**:
-   ```bash
-   python run.py
-   ```
+Install the required libraries using pip:
+
+```bash
+pip install PyQt5 pygame
+```
+
+### Project Structure
+
+```
+EyeBreakReminder/
+├── assets/
+│   ├── icon.png
+│   ├── icon.ico
+│   ├── sound.mp3
+│   └── sound_end.mp3
+├── translations/
+│   └── app_ru.qm
+├── eye_break_reminder/
+│   ├── __init__.py
+│   ├── main.py
+│   └── setup.py
+└── README.md
+```
+
+- `assets/` — Folder containing icons and sound files
+- `translations/` — Folder containing translation files
+- `eye_break_reminder/` — Main application module
+  - `__init__.py` — Initialization file for the package
+  - `main.py` — Main executable file of the application
+  - `setup.py` — Setup script for the application
+- `README.md` — Project description
 
 ## Usage
 
-- Launch the application by running `python run.py`.
-- The application will start a 20-minute timer. After the timer ends, it will prompt you to take a 20-second break.
-- Control the volume of the reminder sound using the slider in the application window.
-- Minimize the application to the system tray by closing the window. You can restore it by selecting "Restore" from the tray menu.
+### Running the Application
 
-## Requirements
+Run the application using the following command:
 
-- Python 3.6 or higher
-- [PyQt5](https://pypi.org/project/PyQt5/) (>=5.15.0)
-- [pygame](https://pypi.org/project/pygame/) (>=2.0.0)
+```bash
+python main.py
+```
+
+### Settings
+
+- **Reminder every X minutes**: Set the interval (in minutes) after which the reminder will appear.
+- **Reminder duration (sec)**: Set how long (in seconds) the reminder will be displayed.
+- **Volume**: Adjust the volume of the sound notifications.
+- **Use full-screen notification**: Choose whether the reminder should be displayed in fullscreen mode.
+- **Minimize to tray**: If enabled, the application will minimize to the system tray instead of closing.
+- **Add to autostart**: The application will start automatically when your system boots.
+- **Save settings**: Save the current settings.
+
+### Minimizing to Tray
+
+If the **Minimize to tray** option is enabled, the application will hide in the system tray when minimized. To restore the window, click on the application's tray icon and select **Restore**.
+
+## Compilation to Executable
+
+You can compile the application into a single executable file using PyInstaller.
+
+### Installing PyInstaller
+
+Install PyInstaller using pip:
+
+```bash
+pip install pyinstaller
+```
+
+### Compilation
+
+Run the following command in the root directory of the project:
+
+```bash
+pyinstaller --onefile --windowed --icon=assets/icon.ico --name=EyeBreakReminder --add-data "assets;assets" --add-data "translations;translations" main.py
+```
+
+**Explanation of the command:**
+
+- `--onefile` — Creates a single executable file.
+- `--windowed` — The application runs without a console window.
+- `--icon=assets/icon.ico` — Specifies the icon for the executable.
+- `--name=EyeBreakReminder` — Sets the name of the executable file.
+- `--add-data "assets;assets"` — Includes the `assets` folder in the build.
+- `--add-data "translations;translations"` — Includes the `translations` folder in the build.
+- `main.py` — The main file of the application.
+
+After successful compilation, the executable file will be located in the `dist` folder.
+
+### Running the Executable
+
+Navigate to the `dist` folder and run the `EyeBreakReminder` executable:
+
+```bash
+cd dist
+./EyeBreakReminder
+```
+
+## Project Files
+
+### `main.py`
+
+The main executable file of the application. It contains the `EyeBreakReminder` class, which implements all the functionality of the application.
+
+### `__init__.py`
+
+Initialization file for the `eye_break_reminder` package. It can be left empty.
+
+### `setup.py`
+
+A script for installing the application as a package. If you wish to install the application system-wide, you can use this file.
+
+### `assets/`
+
+Folder containing resources:
+
+- `icon.png` and `icon.ico` — Icons for the application.
+- `sound.mp3` — Sound notification for the start of the break.
+- `sound_end.mp3` — Sound notification for the end of the break.
+
+### `translations/`
+
+Folder containing translation files. It includes translations to support multiple languages.
+
+## Logging
+
+The application saves logs in the `AppData/EyeBreakReminder/eye_break_reminder.log` file. Logs help you track the application's activity and diagnose potential issues.
+
+## Autostart (Windows Only)
+
+The application can be added to the system's autostart. To enable this, check the **Add to autostart** option in the application's settings.
+
+## Multilingual Support
+
+The application supports multiple languages using Qt's translation system. By default, it attempts to load a translation based on your system's language settings.
+
+## Development
+
+### Requirements
+
+- Python 3.x
+- PyQt5
+- pygame
+- PyInstaller (for compilation)
+- Additional modules: `os`, `sys`, `logging`, `threading`
+
+### Running in Development Mode
+
+You can run and test the application directly using Python:
+
+```bash
+python main.py
+```
+
+### Creating Translations
+
+To add a new language, create the corresponding translation file in the `translations` folder and ensure it is loaded in the code.
+
+## Contributing
+
+If you'd like to contribute to the project, please fork the repository and submit a pull request with your changes.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Author
+---
 
-Artem Tarasiuk – [email](mailto:artemtotal@gmail.com)
-```
+**Note:** Ensure that all files and folders (especially `assets` and `translations`) are in the correct locations relative to the main `main.py` file or the executable file after compilation.
 
-This `README.md` includes an overview, installation instructions, and basic usage guidelines for the EyeBreakReminder project based on the code and structure provided.
+**Important:** When using PyInstaller on different platforms, various issues may arise. Please refer to the [PyInstaller documentation](https://pyinstaller.readthedocs.io/en/stable/) for additional information.
+
+# Quick Start Guide
+
+1. **Clone the repository or download the code** to your desired directory.
+
+2. **Install dependencies**:
+
+   ```bash
+   pip install PyQt5 pygame
+   ```
+
+3. **Run the application**:
+
+   ```bash
+   python main.py
+   ```
+
+4. **Compile to an executable (optional)**:
+
+   ```bash
+   pyinstaller --onefile --windowed --icon=assets/icon.ico --name=EyeBreakReminder --add-data "assets;assets" --add-data "translations;translations" main.py
+   ```
+
+5. **Run the compiled application** from the `dist` folder.
+
+---
+
+We hope this application helps you take care of your eye health!
