@@ -27,9 +27,20 @@ class EyeBreakReminder(QWidget):
     def __init__(self):
         super().__init__()
 
+        # Define path to log file in AppData
+        app_data_dir = os.getenv('APPDATA')
+        log_dir = os.path.join(app_data_dir, 'EyeBreakReminder')
+        os.makedirs(log_dir, exist_ok=True)
+        log_file_path = os.path.join(log_dir, 'eye_break_reminder.log')
+
         # Initialize logging
-        logging.basicConfig(filename='eye_break_reminder.log', level=logging.INFO,
-                            format='%(asctime)s:%(levelname)s:%(message)s')
+        try:
+            logging.basicConfig(filename=log_file_path, level=logging.INFO,
+                format='%(asctime)s:%(levelname)s:%(message)s')
+        except Exception as e:
+            print(f"Failed to initialize logging: {e}")
+            logging.basicConfig(level=logging.INFO,
+                format='%(asctime)s:%(levelname)s:%(message)s')
 
         logging.info("Application is starting.")
 
@@ -57,6 +68,7 @@ class EyeBreakReminder(QWidget):
         
         # Paths to assets
         self.sound_path = resource_path('assets/sound.mp3')
+        self.sound_path_end = resource_path('assets/sound_end.mp3')
         self.icon_path = resource_path('assets/icon.png')
 
 
@@ -73,7 +85,7 @@ class EyeBreakReminder(QWidget):
         layout = QVBoxLayout()
 
         # Countdown timer label
-        self.timer_label = QLabel('00:00', self)
+        self.timer_label = QLabel('20:00', self)
         self.timer_label.setAlignment(Qt.AlignCenter)
         self.timer_label.setStyleSheet('font-size: 36px;')
         layout.addWidget(self.timer_label)
@@ -262,10 +274,15 @@ class EyeBreakReminder(QWidget):
             break_duration = 20 * 1000  # Default to 20 seconds
             self.break_duration_input.setText('20')
 
+        
         QTimer.singleShot(break_duration, self.end_break)  # Close after specified time
 
     def end_break(self):
         # Close break window
+
+        volume = self.volume_slider.value()
+        threading.Thread(target=self.play_sound_end, args=(volume,)).start()
+
         if hasattr(self, 'break_window'):
             self.break_window.close()
             logging.info("Break ended.")
@@ -280,6 +297,18 @@ class EyeBreakReminder(QWidget):
             pygame.mixer.init()
             pygame.mixer.music.set_volume(volume / 100)
             pygame.mixer.music.load(self.sound_path)
+            pygame.mixer.music.play()
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
+        except Exception as e:
+            logging.error(f"Error playing sound: {e}")
+
+    def play_sound_end(self, volume):
+        try:
+            # Play notification sound
+            pygame.mixer.init()
+            pygame.mixer.music.set_volume(volume / 100)
+            pygame.mixer.music.load(self.sound_path_end)
             pygame.mixer.music.play()
             while pygame.mixer.music.get_busy():
                 pygame.time.Clock().tick(10)
