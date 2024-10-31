@@ -1,5 +1,3 @@
-# eye_break_reminder/main.py
-
 import sys
 import os
 import logging
@@ -14,12 +12,12 @@ import threading
 import pygame
 
 def resource_path(relative_path):
-    # Получает абсолютный путь к ресурсам, работает для dev и для PyInstaller 
+    # gets absolute path to resources, works for dev and for PyInstaller 
     if getattr(sys, '_MEIPASS', False):
-            # Если запущено из PyInstaller
+            # if run from PyInstaller
         base_path = sys._MEIPASS
     else:
-            # Если запущено в режиме разработки
+            # if run in development mode
         base_path = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(base_path, relative_path)
 
@@ -27,7 +25,7 @@ class EyeBreakReminder(QWidget):
     def __init__(self):
         super().__init__()
 
-        # Define path to log file in AppData
+        # define path to log file in AppData
         app_data_dir = os.getenv('APPDATA')
         log_dir = os.path.join(app_data_dir, 'EyeBreakReminder')
         os.makedirs(log_dir, exist_ok=True)
@@ -47,8 +45,7 @@ class EyeBreakReminder(QWidget):
         # Use QSettings to save user preferences
         self.settings = QSettings('MyCompany', 'EyeBreakReminder')
 
-        # Set up translator for multilingual support
-        
+        # set up translator for multilingual support
         self.translator = QTranslator()
         locale = QLocale.system().name()
         print(f"System locale: {locale}")
@@ -60,9 +57,7 @@ class EyeBreakReminder(QWidget):
         else:
             logging.warning(f"Could not load translation for locale '{locale}' from '{translations_path}'")
 
-
-
-        # Define base directory
+        # define base directory
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
         
@@ -71,15 +66,13 @@ class EyeBreakReminder(QWidget):
         self.sound_path_end = resource_path('assets/sound_end.mp3')
         self.icon_path = resource_path('assets/icon.png')
 
-
-
         self.initUI()
 
     def initUI(self):
         self.setWindowTitle(self.tr('Eye Reminder'))
-        self.setGeometry(100, 100, 400, 400)  # Increased window size
+        self.setGeometry(100, 100, 400, 400)  # increased window size
 
-        # Set window icon (to display in taskbar)
+        # set window icon (to display in taskbar)
         self.setWindowIcon(QIcon(self.icon_path))
 
         layout = QVBoxLayout()
@@ -142,7 +135,7 @@ class EyeBreakReminder(QWidget):
         self.autostart_checkbox.setChecked(self.settings.value('autostart', 'false') == 'true')
         layout.addWidget(self.autostart_checkbox)
 
-        # Save settings button
+        # save settings button
         save_settings_button = QPushButton(self.tr('Save settings'), self)
         save_settings_button.clicked.connect(self.save_settings)
         layout.addWidget(save_settings_button)
@@ -151,14 +144,14 @@ class EyeBreakReminder(QWidget):
 
         self.create_tray_icon()
 
-        # Set remaining time
+        # set remaining time
         self.set_remaining_time()
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_timer)
         self.timer.start(1000)  # Timer updates every second
 
-        # Apply CSS styles for better UI
+        # apply CSS styles for better UI
         self.setStyleSheet("""
             QWidget {
                 background-color: #f0f0f0;
@@ -178,14 +171,14 @@ class EyeBreakReminder(QWidget):
 
         self.show()
 
-        # Set up autostart based on saved settings
+        # setup autostart based on saved settings
         if self.autostart_checkbox.isChecked():
             self.setup_autostart()
         else:
             self.remove_autostart()
 
     def tr(self, text):
-        # Method for translating text
+        # method for translating text
         return QApplication.translate("EyeBreakReminder", text)
 
     def set_remaining_time(self):
@@ -193,14 +186,14 @@ class EyeBreakReminder(QWidget):
             self.remaining_time = int(float(self.work_interval_input.text()) * 60)
             self.update_timer_label()
         except ValueError:
-            self.remaining_time = 20 * 60  # Default to 20 minutes
+            self.remaining_time = 20 * 60  # default to 20 minutes
             self.work_interval_input.setText('20')
 
     def update_volume_label(self, value):
         self.volume_label.setText(self.tr('Volume: ') + str(value))
 
     def save_settings(self):
-        # Save user settings
+        # save user settings
         self.settings.setValue('volume', str(self.volume_slider.value()))
         self.settings.setValue('work_interval', self.work_interval_input.text())
         self.settings.setValue('break_duration', self.break_duration_input.text())
@@ -210,7 +203,7 @@ class EyeBreakReminder(QWidget):
         self.set_remaining_time()
         logging.info("Settings saved.")
 
-        # Set up or remove autostart based on checkbox
+        # setup or remove autostart based on checkbox
         if self.autostart_checkbox.isChecked():
             self.setup_autostart()
         else:
@@ -220,7 +213,7 @@ class EyeBreakReminder(QWidget):
         if self.remaining_time > 0:
             self.remaining_time -= 1
 
-            # Notification 10 seconds before break
+            # notification 10 seconds before break
             if self.remaining_time == 10:
                 self.tray_icon.showMessage(
                     self.tr('Break is about to start'),
@@ -244,15 +237,15 @@ class EyeBreakReminder(QWidget):
         volume = self.volume_slider.value()
         threading.Thread(target=self.play_sound, args=(volume,)).start()
 
-        # Choose between full-screen or windowed notification
+        # choose between full-screen or windowed notification
         if self.fullscreen_checkbox.isChecked():
             self.break_window = QWidget()
-            # Устанавливаем флаги окна, чтобы оно было поверх всех окон и без рамки
+            # set window flags to stay on top and without frame
             self.break_window.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
-            # Показываем окно на весь экран
+            # show window full screen
             self.break_window.showFullScreen()
 
-            # Активируем окно и поднимаем его на передний план
+            # activate window and bring to front
             self.break_window.activateWindow()
             self.break_window.raise_()
 
@@ -261,7 +254,7 @@ class EyeBreakReminder(QWidget):
             self.break_window.setWindowTitle(self.tr('Break Time'))
             self.break_window.setGeometry(100, 100, 400, 200)
             self.break_window.setWindowFlags(Qt.WindowStaysOnTopHint )
-            # Активируем окно и поднимаем его на передний план
+            # activate window and bring to front
             self.break_window.activateWindow()
             self.break_window.raise_()
 
@@ -280,18 +273,18 @@ class EyeBreakReminder(QWidget):
 
         self.break_window.setLayout(layout)
 
-        # Use customizable break duration
+        # use customizable break duration
         try:
             break_duration = int(float(self.break_duration_input.text()) * 1000)
         except ValueError:
-            break_duration = 20 * 1000  # Default to 20 seconds
+            break_duration = 20 * 1000  # default to 20 seconds
             self.break_duration_input.setText('20')
 
         
-        QTimer.singleShot(break_duration, self.end_break)  # Close after specified time
+        QTimer.singleShot(break_duration, self.end_break)  # close after specified time
 
     def end_break(self):
-        # Close break window
+        # close break window
 
         volume = self.volume_slider.value()
         threading.Thread(target=self.play_sound_end, args=(volume,)).start()
@@ -300,13 +293,13 @@ class EyeBreakReminder(QWidget):
             self.break_window.close()
             logging.info("Break ended.")
 
-        # Reset timer and start again
+        # reset timer and start again
         self.set_remaining_time()
         self.timer.start(1000)
 
     def play_sound(self, volume):
         try:
-            # Play notification sound
+            # play notification sound
             pygame.mixer.init()
             pygame.mixer.music.set_volume(volume / 100)
             pygame.mixer.music.load(self.sound_path)
@@ -318,7 +311,7 @@ class EyeBreakReminder(QWidget):
 
     def play_sound_end(self, volume):
         try:
-            # Play notification sound
+            # play notification sound
             pygame.mixer.init()
             pygame.mixer.music.set_volume(volume / 100)
             pygame.mixer.music.load(self.sound_path_end)
@@ -327,8 +320,6 @@ class EyeBreakReminder(QWidget):
                 pygame.time.Clock().tick(10)
         except Exception as e:
             logging.error(f"Error playing sound: {e}")
-
-
 
     def create_tray_icon(self):
         self.tray_icon = QSystemTrayIcon(QIcon(self.icon_path), self)
@@ -349,14 +340,14 @@ class EyeBreakReminder(QWidget):
 
 
     def closeEvent(self, event):
-        # Always close the application when the window is closed
+        # always close the application when the window is closed
         logging.info("Application is closing.")
         self.tray_icon.hide()
         event.accept()
 
     def changeEvent(self, event):
         logging.info(f"Event type: {event.type()}")
-        # Handle minimize to tray if the checkbox is checked
+        # handle minimize to tray if the checkbox is checked
         if event.type() == QEvent.WindowStateChange:
             if self.windowState() & Qt.WindowMinimized:
                 if self.minimize_to_tray_checkbox.isChecked():
@@ -371,7 +362,7 @@ class EyeBreakReminder(QWidget):
         super(EyeBreakReminder, self).changeEvent(event)
 
     def setup_autostart(self):
-        # Add application to autostart (Windows)
+        # add application to autostart (Windows)
         if sys.platform.startswith('win'):
             try:
                 import winreg
@@ -385,7 +376,7 @@ class EyeBreakReminder(QWidget):
                 logging.error(f"Error adding to autostart: {e}")
 
     def remove_autostart(self):
-        # Remove application from autostart (Windows)
+        # remove application from autostart (Windows)
         if sys.platform.startswith('win'):
             try:
                 import winreg
