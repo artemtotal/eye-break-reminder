@@ -247,11 +247,24 @@ class EyeBreakReminder(QWidget):
         # Choose between full-screen or windowed notification
         if self.fullscreen_checkbox.isChecked():
             self.break_window = QWidget()
+            # Устанавливаем флаги окна, чтобы оно было поверх всех окон и без рамки
+            self.break_window.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
+            # Показываем окно на весь экран
             self.break_window.showFullScreen()
+
+            # Активируем окно и поднимаем его на передний план
+            self.break_window.activateWindow()
+            self.break_window.raise_()
+
         else:
             self.break_window = QWidget()
             self.break_window.setWindowTitle(self.tr('Break Time'))
             self.break_window.setGeometry(100, 100, 400, 200)
+            self.break_window.setWindowFlags(Qt.WindowStaysOnTopHint )
+            # Активируем окно и поднимаем его на передний план
+            self.break_window.activateWindow()
+            self.break_window.raise_()
+
             self.break_window.show()
 
         layout = QVBoxLayout()
