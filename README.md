@@ -18,6 +18,10 @@ The application displays a countdown timer and, at specified intervals, shows a 
 
 ## Installation
 
+### Portable file to download (Windows)
+
+[link on the mega.nz](https://mega.nz/file/FdkERTLA#fYEF8TDttc1ruFxSzqyH-g0khzlmzauyWm7GeHqX3jU)
+
 ### Requirements
 
 - Python 3.x
